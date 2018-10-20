@@ -5,10 +5,10 @@ import { Link } from 'react-router-dom';
 function RenderLeader({leader}) {
     return(
         <div className="row">
-            <div class="col-md-2">
+            <div className="col-md-2">
                 <img src={leader.image} alt={leader.name} />
             </div>
-            <div class="col-md-10">
+            <div className="col-md-10">
                 <h3>{leader.name}</h3>
                 <p>{leader.designation}</p>
                 <p>{leader.description}</p>
@@ -21,7 +21,7 @@ function About(props) {
 
     const leaders = props.leaders.map((leader) => {
         return (
-            <RenderLeader leader={leader} />
+            <RenderLeader key={leader.id} leader={leader} />
         );
     });
 
