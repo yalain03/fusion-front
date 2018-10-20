@@ -1,6 +1,12 @@
 import React, { Component } from 'react';
-import { Card, CardImg, CardText, CardBody, CardTitle, Breadcrumb, BreadcrumbItem } from 'reactstrap';
+import { Card, CardImg, CardText, CardBody, Button, Breadcrumb, BreadcrumbItem,
+    Row, Col, Modal, Label, ModalHeader, ModalBody, FormGroup } from 'reactstrap';
+import { Control, LocalForm, Errors } from 'react-redux-form';
 import { Link } from 'react-router-dom';
+
+const required = (val) => val && val.length;
+const minLength = (len) => (val) => !val || (val.length >= len);
+const maxLength = (len) => (val) => !val || (val.length <= len);
 
 function RenderDish({dish}) {
     return (
@@ -36,6 +42,7 @@ function RenderComments({comments}) {
 }
 
 const DishDetail = (props) => {
+
     if (props.dish != null) {
         return (
             <div className="container">
@@ -55,9 +62,61 @@ const DishDetail = (props) => {
                     </div>
                     <div className="col-12 col-md-5 m-1">
                         <RenderComments comments={props.comments} />
-                    </div>
+                        <Button outline onClick={props.toggleModal}>
+                            <span className="fa fa-pencil fa-lg"></span> Submit Comment
+                        </Button>
+                    </div>       
+                    <Modal isOpen={props.isModalOpen} toggle={props.toggleModal}>
+                        <ModalHeader toggle={props.toggleModal}>Submit Comment</ModalHeader>
+                        <ModalBody>
+                            <LocalForm onSubmit={(values) => this.handleSubmit(values)}>
+                                <FormGroup className="form-group">
+                                    <Label htmlFor="name">Your Name</Label>
+                                        <Control.text model=".name" id="name" name="name"
+                                            placeholder="Name"
+                                            className="form-control"
+                                            validators={{
+                                                required, minLength: minLength(3), maxLength: maxLength(15)
+                                            }}
+                                            />
+                                        <Errors
+                                            className="text-danger"
+                                            model=".name"
+                                            show="touched"
+                                            messages={{
+                                                required: 'Required',
+                                                minLength: 'Must be greater than 2 characters',
+                                                maxLength: 'Must be 15 characters or less'
+                                            }}
+                                        />
+                                </FormGroup>
+                                <FormGroup className="form-group">
+                                    <Label htmlFor="rating">Rating</Label>
+                                        <Control.select model=".rating" name="rating"
+                                            className="form-control">
+                                            <option>1</option>
+                                            <option>2</option>
+                                            <option>3</option>
+                                            <option>4</option>
+                                            <option>5</option>
+                                        </Control.select>
+                                </FormGroup>
+                                <FormGroup className="form-group">
+                                    <Label htmlFor="comment">Comment</Label>
+                                        <Control.textarea model=".comment" id="comment" name="comment"
+                                            rows="12"
+                                            className="form-control" />
+                                </FormGroup>
+                                <FormGroup className="form-group">
+                                        <Button type="submit" color="primary">
+                                            Submit
+                                        </Button>
+                                </FormGroup>
+                            </LocalForm>
+                        </ModalBody>
+                    </Modal>
                 </div>
-                </div>
+            </div>
         );
     }
 }

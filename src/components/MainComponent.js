@@ -3,7 +3,7 @@ import { Navbar, NavbarBrand } from 'reactstrap';
 import Menu from './MenuComponent';
 import DishDetail from './DishDetailComponent';
 import Home from './HomeComponent';
-import Header from './HeaderCompnent';
+import Header from './HeaderComponent';
 import Footer from './FooterComponent';
 import Contact from './ContactComponent';
 import About from './AboutComponent';
@@ -19,22 +19,29 @@ const mapStateToProps = state => {
     }
 }
 
-class Main extends Component {
+class Main extends Component {    
 
     constructor(props) {
         super(props);
+        this.state = {isModalOpen: false};
+        this.toggleModal = this.toggleModal.bind(this);
     }
 
     onDishSelect(dishId) {
         this.setState({selectedDish: dishId});
-    }    
+    } 
+
+    toggleModal() {
+        this.setState({ isModalOpen: !this.state.isModalOpen });
+    }
 
     render() {
 
         const DishWithId = ({match}) => {
             return (
                 <DishDetail dish={this.props.dishes.filter((dish) => dish.id === parseInt(match.params.dishId, 10))[0]}
-                    comments={this.props.comments.filter((comment) => comment.dishId === parseInt(match.params.dishId, 10))} />
+                    comments={this.props.comments.filter((comment) => comment.dishId === parseInt(match.params.dishId, 10))}
+                    isModalOpen={this.state.isModalOpen} toggleModal={this.toggleModal} />
             );
         }
 
