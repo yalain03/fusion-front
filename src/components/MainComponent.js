@@ -9,7 +9,7 @@ import Contact from './ContactComponent';
 import About from './AboutComponent';
 import { Switch, Route, Redirect, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { postComment, fetchDishes, fetchComments, fetchLeaders, fetchPromos } from '../redux/ActionCreators';
+import { postComment, fetchDishes, fetchComments, fetchLeaders, fetchPromos, postDish, loginUser, logoutUser, postFeedback, signup } from '../redux/ActionCreators';
 import { actions } from 'react-redux-form';
 
 const mapStateToProps = state => {
@@ -18,16 +18,22 @@ const mapStateToProps = state => {
         comments: state.comments,
         promotions: state.promotions,
         leaders: state.leaders,
+        auth: state.auth
     }
 }
 
 const mapDispatchToProps = dispatch => ({
+    postDish: (name, category, label, price, description) => dispatch(postDish(name, category, label, price, description)),
     postComment: (dishId, rating, author, comment) => dispatch(postComment(dishId, rating, author, comment)),
     fetchDishes: () => { dispatch(fetchDishes())},
     resetFeedbackForm: () => { dispatch(actions.reset('feedback'))},
     fetchComments: () => { dispatch(fetchComments()) },
     fetchPromos: () => { dispatch(fetchPromos()) },
-    fetchLeaders: () => { dispatch(fetchLeaders()) }
+    fetchLeaders: () => { dispatch(fetchLeaders()) },
+    postFeedback: (feedback) => { dispatch(postFeedback(feedback)) },
+    loginUser: (creds) => { dispatch(loginUser(creds)) },
+    logoutUser: () => { dispatch(logoutUser()) },
+    signup: (creds) => { dispatch(signup(creds)) } 
   });
 
 class Main extends Component {    
@@ -65,42 +71,46 @@ class Main extends Component {
                     promoLoading={this.props.promotions.isLoading}
                     promoErrMess={this.props.promotions.errMess}
                     leader={this.props.leaders.leaders.filter((leader) => leader.featured)[0]}
+                    leaderLoading={this.props.leaders.isLoading}
+                    leaderErrMess={this.props.leaders.errMess}
                 />
             );
           }
       
-          const DishWithId = ({match}) => {
+        const DishWithId = ({match}) => {
             return(
-                <DishDetail dish={this.props.dishes.dishes.filter((dish) => dish.id === parseInt(match.params.dishId,10))[0]}
+                this.props.auth.isAuthenticated
+                ?
+                <DishDetail dish={this.props.dishes.dishes.filter((dish) => dish._id === match.params.dishId)[0]}
                     isLoading={this.props.dishes.isLoading}
                     errMess={this.props.dishes.errMess}
-                    comments={this.props.comments.comments.filter((comment) => comment.dishId === parseInt(match.params.dishId,10))}
+                    comments={this.props.comments.comments.filter((comment) => comment.dish === match.params.dishId)}
+                    commentsErrMess={this.props.comments.errMess}
+                    postComment={this.props.postComment}
+                />
+                :
+                <DishDetail dish={this.props.dishes.dishes.filter((dish) => dish._id === match.params.dishId)[0]}
+                    isLoading={this.props.dishes.isLoading}
+                    errMess={this.props.dishes.errMess}
+                    comments={this.props.comments.comments.filter((comment) => comment.dish === match.params.dishId)}
                     commentsErrMess={this.props.comments.errMess}
                     postComment={this.props.postComment}
                 />
             );
-          };
-
-        const AboutPage = () => {
-            return (
-                <About leaders={this.props.leaders.leaders} />
-            );
-        }
+        };
 
         return (
             <div>
-                {/* <Navbar dark color="primary">
-                    <div className="container">
-                        <NavbarBrand href="/">di Carpaccio Risorante</NavbarBrand>
-                    </div>
-                </Navbar> */}
-                <Header />
+                <Header auth={this.props.auth} 
+                    loginUser={this.props.loginUser} 
+                    logoutUser={this.props.logoutUser}
+                    signup={this.props.signup} />
                 <Switch>
                     <Route path="/home" component={HomePage} />
-                    <Route exact path="/menu" component={() => <Menu dishes={this.props.dishes} />} />
+                    <Route exact path="/menu" component={() => <Menu dishes={this.props.dishes} postDish={this.props.postDish} />} />
                     <Route path="/menu/:dishId" component={DishWithId} />
-                    <Route exact path="/aboutus" component={AboutPage} />
-                    <Route exact path='/contactus' component={() => <Contact resetFeedbackForm={this.props.resetFeedbackForm} />} />
+                    <Route exact path='/aboutus' component={() => <About leaders={this.props.leaders} />} />} />
+                    <Route exact path="/contactus" component={() => <Contact resetFeedbackForm={this.props.resetFeedbackForm} postFeedback={this.props.postFeedback} />} />
                     <Redirect to="/home" />
                 </Switch>
                 <Footer />

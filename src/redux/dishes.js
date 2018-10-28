@@ -13,6 +13,10 @@ export const Dishes = (state = { isLoading: true,
         case ActionTypes.DISHES_FAILED:
             return {...state, isLoading: false, errMess: action.payload};
 
+        case ActionTypes.ADD_COMMENT:
+            var dish = action.payload;
+            return { ...state, comments: state.dishes.concat(dish)};
+
         default:
             return state;
     }

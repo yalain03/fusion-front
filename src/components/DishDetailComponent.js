@@ -9,6 +9,7 @@ import { baseUrl } from '../shared/baseUrl';
 const required = (val) => val && val.length;
 const minLength = (len) => (val) => !val || (val.length >= len);
 const maxLength = (len) => (val) => !val || (val.length <= len);
+const isNumber = (val) => !isNaN(Number(val));
 
 function RenderDish({dish}) {
     return (
@@ -32,8 +33,9 @@ function RenderComments({comments, postComment, dishId}) {
                     {comments.map((comment) => {
                         return (
                             <li key={comment.id}>
+                                <p>{comment.rating} stars</p>
                                 <p>{comment.comment}</p>
-                                <p>--{comment.author}, {new Intl.DateTimeFormat('en-US', { year: 'numeric', month: 'short', day: '2-digit'}).format(new Date(Date.parse(comment.date)))}</p>
+                                <p>--{comment.author.username}, {new Intl.DateTimeFormat('en-US', { year: 'numeric', month: 'short', day:'2-digit'}).format(new Date(Date.parse(comment.updatedAt)))}</p>
                             </li>
                         );
                     })}
@@ -63,8 +65,7 @@ class CommentForm extends Component {
 
     handleSubmit(values) {
         this.toggleModal();
-        console.log(this.props.dishId);
-        this.props.postComment(this.props.dishId, values.rating, values.author, values.comment);
+        this.props.postComment(this.props.dishId, values.rating, values.comment);
     }
 
     render() {
@@ -77,26 +78,6 @@ class CommentForm extends Component {
                     <ModalHeader toggle={this.toggleModal}>Submit Comment</ModalHeader>
                     <ModalBody>
                         <LocalForm onSubmit={this.handleSubmit}>
-                            <FormGroup className="form-group">
-                                <Label htmlFor="name">Your Name</Label>
-                                <Control.text model=".author" id="author" name="author"
-                                    placeholder="Your name"
-                                    className="form-control"
-                                    validators={{
-                                        required, minLength: minLength(3), maxLength: maxLength(15)
-                                    }}
-                                />
-                                <Errors
-                                    className="text-danger"
-                                    model=".author"
-                                    show="touched"
-                                    messages={{
-                                        required: 'Required',
-                                        minLength: 'Must be greater than 2 characters',
-                                        maxLength: 'Must be 15 characters or less'
-                                    }}
-                                />
-                            </FormGroup>
                             <FormGroup className="form-group">
                                 <Label htmlFor="rating">Rating</Label>
                                 <Control.select model=".rating" name="rating"
@@ -112,7 +93,7 @@ class CommentForm extends Component {
                                 <Label htmlFor="comment">Comment</Label>
                                 <Control.textarea model=".comment" id="comment" name="comment"
                                     rows="12"
-                                    className="form-control" />
+                                    className="form-control" value="My name is" />
                             </FormGroup>
                             <FormGroup className="form-group">
                                 <Button type="submit" color="primary">
@@ -164,7 +145,7 @@ const DishDetail = (props) => {
                         <RenderDish dish={props.dish} />
                     </div>
                     <div className="col-12 col-md-5 m-1">
-                        <RenderComments comments={props.comments} postComment={props.postComment} dishId={props.dish.id} />
+                        <RenderComments comments={props.comments} postComment={props.postComment} dishId={props.dish._id} />
                         {/* <CommentForm dishId={props.dish.id} addComment={props.addComment} />                         */}
                     </div>       
                 </div>

@@ -11,12 +11,17 @@ class Header extends Component {
 
         this.state = {
             isNavOpen: false,
-            isModalOpen: false
+            isModalOpen: false,
+            isSignupOpen: false
         };
 
         this.toggleNav = this.toggleNav.bind(this);
         this.toggleModal = this.toggleModal.bind(this);
         this.handleLogin = this.handleLogin.bind(this);
+
+        this.toggleSignup = this.toggleSignup.bind(this);
+        this.handleSignup = this.handleSignup.bind(this);
+        this.handleLogout = this.handleLogout.bind(this);
     }
 
     toggleNav() {
@@ -33,8 +38,24 @@ class Header extends Component {
 
     handleLogin(event) {
         this.toggleModal();
-        alert('Username: ' + this.username.value + ' Password: ' + this.password.value +
-            ' Remember: ' + this.remember.checked);
+        this.props.loginUser({username: this.username.value, password: this.password.value});
+        event.preventDefault();
+    }
+
+    handleLogout() {
+        this.props.logoutUser();
+    }
+
+    toggleSignup() {
+        this.setState({
+            isSignupOpen: !this.state.isSignupOpen
+        });
+    }
+
+    handleSignup(event) {
+        this.toggleSignup();
+        this.props.signup({firstname: this.firstname.value, lastname: this.lastname.value, 
+            username: this.username.value, password: this.password.value});
         event.preventDefault();
     }
 
@@ -48,27 +69,50 @@ class Header extends Component {
                         <Collapse isOpen={this.state.isNavOpen} navbar>
                             <Nav navbar>
                             <NavItem>
-                                <NavLink className="nav-link"  to='/home'><span className="fa fa-home fa-lg"></span> Home</NavLink>
+                                <NavLink className="nav-link"  to='/home'><span className="lnr lnr-home"></span> Home</NavLink>
                             </NavItem>
                             <NavItem>
-                                <NavLink className="nav-link" to='/aboutus'><span className="fa fa-info fa-lg"></span> About Us</NavLink>
+                                <NavLink className="nav-link" to='/aboutus'><span className="lnr lnr-license"></span> About Us</NavLink>
                             </NavItem>
                             <NavItem>
-                                <NavLink className="nav-link"  to='/menu'><span className="fa fa-list fa-lg"></span> Menu</NavLink>
+                                <NavLink className="nav-link"  to='/menu'><span className="lnr lnr-list"></span> Menu</NavLink>
                             </NavItem>
                             <NavItem>
-                                <NavLink className="nav-link" to='/contactus'><span className="fa fa-address-card fa-lg"></span> Contact Us</NavLink>
+                                <NavLink className="nav-link" to='/contactus'><span className="lnr lnr-phone-handset"></span> Contact Us</NavLink>
                             </NavItem>
                             </Nav>
                         </Collapse>
 
                         <Nav className="ml-auto" navbar>
-                            <NavItem>
-                                <Button outline onClick={this.toggleModal}>
-                                    <span className="fa fa-sign-in fa-lg"></span> Login
-                                </Button>
-                            </NavItem>
-                        </Nav>
+                                <NavItem>
+                                    { !this.props.auth.isAuthenticated ?
+                                        <div>
+                                            <Button outline onClick={this.toggleModal}>
+                                            <span className="lnr lnr-enter"></span> Login
+                                                {this.props.auth.isFetching ?
+                                                    <span className="fa fa-spinner fa-pulse fa-fw"></span>
+                                                    : null
+                                                }
+                                            </Button>
+                                            <Button outline onClick={this.toggleSignup}>
+                                                <span className="lnr lnr-pencil"></span> Sign Up
+                                            </Button>
+                                        </div>
+                                        :
+                                        <div>
+                                        <div className="navbar-text mr-3">{this.props.auth.user.username}</div>
+                                        <Button outline onClick={this.handleLogout}>
+                                            <span className="lnr lnr-exit"></span> Logout
+                                            {this.props.auth.isFetching ?
+                                                <span className="fa fa-spinner fa-pulse fa-fw"></span>
+                                                : null
+                                            }
+                                        </Button>
+                                        </div>
+                                    }
+
+                                </NavItem>
+                            </Nav>
                     </div>
                 </Navbar>
                 <Jumbotron>
@@ -104,6 +148,42 @@ class Header extends Component {
                                 </Label>
                             </FormGroup>
                             <Button type="submit" value="submit" color="primary">Login</Button>
+                        </Form>
+                    </ModalBody>
+                </Modal>
+
+                {/* This is for registration */}
+
+                <Modal isOpen={this.state.isSignupOpen} toggle={this.toggleSignup}>
+                    <ModalHeader toggle={this.toggleSignup}>Sign up</ModalHeader>
+                    <ModalBody>
+                        <Form onSubmit={this.handleSignup}>
+                            <FormGroup>
+                                <Label htmlFor="firstname">First Name:</Label>
+                                <Input type="text" id="firstname" name="firstname"
+                                    innerRef={(input) => this.firstname = input} />
+                            </FormGroup>
+                            <FormGroup>
+                                <Label htmlFor="lastname">Last Name:</Label>
+                                <Input type="text" id="lastname" name="lastname"
+                                    innerRef={(input) => this.lastname = input} />
+                            </FormGroup>
+                            <FormGroup>
+                                <Label htmlFor="username">Username</Label>
+                                <Input type="text" id="username" name="username"
+                                    innerRef={(input) => this.username = input} />
+                            </FormGroup>
+                            <FormGroup>
+                                <Label htmlFor="password">Password</Label>
+                                <Input type="password" id="password" name="password"
+                                    innerRef={(input) => this.password = input}  />
+                            </FormGroup>
+                            <FormGroup>
+                                <Label htmlFor="confirm">Confirm Password</Label>
+                                <Input type="password" id="confirm" name="confirm"
+                                    innerRef={(input) => this.confirm = input}  />
+                            </FormGroup>
+                            <Button type="submit" value="submit" color="primary">Sign up</Button>
                         </Form>
                     </ModalBody>
                 </Modal>
