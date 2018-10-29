@@ -12,6 +12,16 @@ export const Comments = (state = { errMess: null, comments:[]}, action) => {
             var comment = action.payload;
             return { ...state, comments: state.comments.concat(comment)};
 
+        case ActionTypes.UPDATE_COMMENT:
+            var comment = action.payload;
+            var oldComment = state.comments.filter((com) => com._id === comment._id)[0];
+            oldComment.comment = comment.comment;
+            return {...state};
+
+        case ActionTypes.DELETE_COMMENT:
+            var commentId = action.payload;
+            return {...state, comments: state.comments.filter((com) => com._id != commentId)};
+
         default:
             return state;
     }

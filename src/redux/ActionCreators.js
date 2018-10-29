@@ -92,6 +92,88 @@ export const postComment = (dishId, rating, comment) => (dispatch) => {
         alert('Your comment could not be posted\nError: '+ error.message); })
 }
 
+export const updateComment = (comment) => ({
+    type: ActionTypes.UPDATE_COMMENT,
+    payload: comment
+});
+
+export const putComment = (commentId, rating, comment) => (dispatch) => {
+    const newComment = {
+        rating: rating,
+        comment: comment
+    }
+    console.log('Comment ', newComment);
+    console.log(commentId);
+
+    const bearer = 'Bearer ' + localStorage.getItem('token');
+
+    return fetch(baseUrl + 'comments/' + commentId, {
+        method: 'PUT',
+        body: JSON.stringify(newComment),
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': bearer
+        },
+        credentials: 'same-origin'
+    })
+    .then(response => {
+        if (response.ok) {
+            return response;
+        }
+        else {
+            var error = new Error('Error ' + response.status + ': ' + response.statusText);
+            error.response = response;
+            throw error;
+        }
+    },
+    error => {
+        var errmess = new Error(error.message);
+        throw errmess;
+    })
+    .then(response => response.json())
+    .then(response => dispatch(updateComment(response)))
+    .catch(error => { console.log('Update comment ', error.message);
+        alert('Your comment could not be updated\nError: '+ error.message); })
+}
+
+export const deleteComment = (commentId) => ({
+    type: ActionTypes.DELETE_COMMENT,
+    payload: commentId
+});
+
+export const removeComment = (commentId) => (dispatch) => {
+    console.log(commentId);
+
+    const bearer = 'Bearer ' + localStorage.getItem('token');
+
+    return fetch(baseUrl + 'comments/' + commentId, {
+        method: 'DELETE',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': bearer
+        },
+        credentials: 'same-origin'
+    })
+    .then(response => {
+        if (response.ok) {
+            return response;
+        }
+        else {
+            var error = new Error('Error ' + response.status + ': ' + response.statusText);
+            error.response = response;
+            throw error;
+        }
+    },
+    error => {
+        var errmess = new Error(error.message);
+        throw errmess;
+    })
+    .then(response => response.json())
+    .then(response => dispatch(deleteComment(commentId)))
+    .catch(error => { console.log('Delete comments ', error.message);
+        alert('Your comment could not be deleted\nError: '+ error.message); })
+}
+
 export const fetchDishes = () => (dispatch) => {
     dispatch(dishesLoading(true));
 

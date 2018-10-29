@@ -9,7 +9,7 @@ import Contact from './ContactComponent';
 import About from './AboutComponent';
 import { Switch, Route, Redirect, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { postComment, fetchDishes, fetchComments, fetchLeaders, fetchPromos, postDish, loginUser, logoutUser, postFeedback, signup } from '../redux/ActionCreators';
+import { postComment, fetchDishes, fetchComments, fetchLeaders, fetchPromos, postDish, loginUser, logoutUser, postFeedback, signup, putComment, removeComment } from '../redux/ActionCreators';
 import { actions } from 'react-redux-form';
 
 const mapStateToProps = state => {
@@ -25,6 +25,8 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => ({
     postDish: (name, category, label, price, description) => dispatch(postDish(name, category, label, price, description)),
     postComment: (dishId, rating, author, comment) => dispatch(postComment(dishId, rating, author, comment)),
+    putComment: (commentId, rating, comment) => dispatch(putComment(commentId, rating, comment)),
+    removeComment: (commentId) => dispatch(removeComment(commentId)),
     fetchDishes: () => { dispatch(fetchDishes())},
     resetFeedbackForm: () => { dispatch(actions.reset('feedback'))},
     fetchComments: () => { dispatch(fetchComments()) },
@@ -87,6 +89,9 @@ class Main extends Component {
                     comments={this.props.comments.comments.filter((comment) => comment.dish === match.params.dishId)}
                     commentsErrMess={this.props.comments.errMess}
                     postComment={this.props.postComment}
+                    putComment={this.props.putComment}
+                    removeComment={this.props.removeComment}
+                    auth={this.props.auth}
                 />
                 :
                 <DishDetail dish={this.props.dishes.dishes.filter((dish) => dish._id === match.params.dishId)[0]}
@@ -94,7 +99,10 @@ class Main extends Component {
                     errMess={this.props.dishes.errMess}
                     comments={this.props.comments.comments.filter((comment) => comment.dish === match.params.dishId)}
                     commentsErrMess={this.props.comments.errMess}
+                    putComment={this.props.putComment}
                     postComment={this.props.postComment}
+                    removeComment={this.props.removeComment}
+                    auth={this.props.auth}
                 />
             );
         };
