@@ -1,33 +1,53 @@
-.row-header{
-  margin:0px auto;
-  padding:0px auto;
-}
+.row-header {
+  margin: 0px auto;
+  padding: 0px auto; }
 
 .row-content {
-  margin:0px auto;
+  margin: 0px auto;
   padding: 50px 0px 50px 0px;
   border-bottom: 1px ridge;
-  min-height:400px;
-}
+  min-height: 400px; }
 
-.footer{
+.footer {
   background-color: #D1C4E9;
-  margin:0px auto;
-  padding: 20px 0px 20px 0px;
-}
-.jumbotron {
-  padding:70px 30px 70px 30px;
-  margin:0px auto;
-  background: #9575CD ;
-  color:floralwhite;
-}
+  margin: 0px auto;
+  padding: 20px 0px 20px 0px; }
 
-address{
-  font-size:80%;
-  margin:0px;
-  color:#0f0f0f;
-}
+.jumbotron {
+  padding: 70px 30px 70px 30px;
+  margin: 0px auto;
+  background: #9575CD;
+  color: floralwhite; }
+
+address {
+  font-size: 80%;
+  margin: 0px;
+  color: #0f0f0f; }
 
 .navbar-dark {
   background-color: #512DA8;
-}
+  height: 200px; }
+
+.white {
+  background-color: #fff; }
+
+.home__welcome {
+  background-size: cover;
+  background-repeat: no-repeat;
+  height: 500px;
+  position: relative; }
+  .home__welcome-msg {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%); }
+    .home__welcome-msg > * {
+      font-family: Herr Von Muellerhoff, sans-serif;
+      color: gold;
+      font-size: 4rem; }
+    .home__welcome-msg:first-child {
+      font-size: 5rem;
+      text-align: center; }
+    .home__welcome-msg:last-child {
+      font-size: 4rem;
+      text-align: center; }
