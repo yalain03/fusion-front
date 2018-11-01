@@ -14,13 +14,20 @@ const isNumber = (val) => !isNaN(Number(val));
 
 function RenderDish({dish}) {
     return (
-        <div>
-            <Card>
+        <div className="detail ml-4">
+            {/* <Card>
                 <CardBody>
                     <CardImg top src={baseUrl + dish.image} alt={dish.name} />
                     <CardText>{dish.description}</CardText>
                 </CardBody>
-            </Card>
+            </Card> */}
+            <div className="detail__image">
+                <img src={baseUrl + dish.image} alt={dish.name} />
+            </div>
+
+            <div className="detail__description">
+                <p>{dish.description}</p>
+            </div>
         </div>
     );
 }
@@ -29,25 +36,29 @@ function RenderComments({comments, postComment, dishId, putComment, removeCommen
     if (comments != null) {
         if (auth.isAuthenticated)
             return (
-                <div>
-                    <h4>Comments</h4>
+                <div className="detail__comments ml-4">
+                    {/* <h4>Comments</h4> */}
                     <ul className="list-unstyled">
                         {comments.map((comment) => {
                             if (auth.user.username === comment.author.username)
                                 return (
-                                    <li key={comment._id}>
-                                        <p>{comment.rating} stars</p>
+                                    <li key={comment._id} className="detail__comments-item">
+                                        <div>
+                                        <p><span class="lnr lnr-star"></span> {comment.rating} </p>
                                         <p>{comment.comment}</p>
-                                        <p>--{comment.author.username}, {new Intl.DateTimeFormat('en-US', { year: 'numeric', month: 'short', day:'2-digit'}).format(new Date(Date.parse(comment.updatedAt)))}</p>
+                                        <p>{comment.author.username}, {new Intl.DateTimeFormat('en-US', { year: 'numeric', month: 'short', day:'2-digit'}).format(new Date(Date.parse(comment.updatedAt)))}</p>
                                         <UpdateForm commentId={comment._id} putComment={putComment} removeComment={removeComment} />
+                                        </div>
                                     </li>
                                 );
                             else 
                                 return (
-                                    <li key={comment._id}>
-                                        <p>{comment.rating} stars</p>
+                                    <li key={comment._id} className="detail__comments-item">
+                                        <div>
+                                        <p><span class="lnr lnr-star"></span> {comment.rating}</p>
                                         <p>{comment.comment}</p>
-                                        <p>--{comment.author.username}, {new Intl.DateTimeFormat('en-US', { year: 'numeric', month: 'short', day:'2-digit'}).format(new Date(Date.parse(comment.updatedAt)))}</p>
+                                        <p>{comment.author.username}, {new Intl.DateTimeFormat('en-US', { year: 'numeric', month: 'short', day:'2-digit'}).format(new Date(Date.parse(comment.updatedAt)))}</p>
+                                        </div>
                                     </li>
                                 );
                         })}
@@ -57,21 +68,23 @@ function RenderComments({comments, postComment, dishId, putComment, removeCommen
             );
         else
             return (
-                <div>
-                    <h4>Comments</h4>
+                <div className="detail__comments ml-4">
+                    {/* <h4>Comments</h4> */}
                     <ul className="list-unstyled">
                         {comments.map((comment) => {
                             return (
-                                <li key={comment._id}>
-                                    <p>{comment.rating} stars</p>
-                                    <p>{comment.comment}</p>
-                                    <p>--{comment.author.username}, {new Intl.DateTimeFormat('en-US', { year: 'numeric', month: 'short', day:'2-digit'}).format(new Date(Date.parse(comment.updatedAt)))}</p>
+                                <li key={comment._id} className="detail__comments-item">
+                                    <div>
+                                        <p><span class="lnr lnr-star"></span> {comment.rating}</p>
+                                        <p>{comment.comment}</p>
+                                        <p>{comment.author.username}, {new Intl.DateTimeFormat('en-US', { year: 'numeric', month: 'short', day:'2-digit'}).format(new Date(Date.parse(comment.updatedAt)))}</p>
+                                    </div>
                                 </li>
                             );
                         })}
                     </ul>
                 </div>
-            )
+            );
     }
 }
 
@@ -167,10 +180,10 @@ class UpdateForm extends Component {
     render() {
         return (
             <div>
-                <Button outline onClick={this.toggleModal}>
+                <Button outline onClick={this.toggleModal} className="edit">
                     <span className="lnr lnr-pencil"></span> Edit
                 </Button>
-                <Button outline onClick={this.handleDelete}>
+                <Button outline onClick={this.handleDelete} className="delete">
                     <span className="lnr lnr-trash"></span> Delete
                 </Button>
                 <Modal isOpen={this.state.isModalOpen} toggle={this.toggleModal}>
@@ -230,24 +243,22 @@ const DishDetail = (props) => {
         return (
             <div className="container">
                 <div className="row">
-                    <Breadcrumb>
+                    {/* <Breadcrumb>
                         <BreadcrumbItem><Link to="/menu">Menu</Link></BreadcrumbItem>
                         <BreadcrumbItem active>{props.dish.name}</BreadcrumbItem>
-                    </Breadcrumb>
+                    </Breadcrumb> */}
                     <div className="col-12">
-                        <h3>{props.dish.name}</h3>
+                        <h3 className="detail__title">{props.dish.name}</h3>
                         <hr />
                     </div>                
                 </div>
-                <div className="row">
-                    <div className="col-12 col-md-5 m-1">
-                        <RenderDish dish={props.dish} />
-                    </div>
-                    <div className="col-12 col-md-5 m-1">
-                        <RenderComments comments={props.comments} postComment={props.postComment} dishId={props.dish._id}
-                            putComment={props.putComment} removeComment={props.removeComment} auth={props.auth} />
-                        {/* <CommentForm dishId={props.dish.id} addComment={props.addComment} />                         */}
-                    </div>       
+                <div className="col-12 col-md-5 m-1">
+                    <RenderDish dish={props.dish} />
+                </div>
+                <div className="col-12 col-md-5 m-1 ml-4">
+                    <RenderComments comments={props.comments} postComment={props.postComment} dishId={props.dish._id}
+                        putComment={props.putComment} removeComment={props.removeComment} auth={props.auth} />
+                    {/* <CommentForm dishId={props.dish.id} addComment={props.addComment} />                         */}
                 </div>
             </div>
         );

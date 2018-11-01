@@ -62,9 +62,9 @@ class DishForm extends Component {
     render() {
         return (
             <div>
-                <Button outline onClick={this.toggleModal} className="ml-5">
+                {/* <Button outline onClick={this.toggleModal} className="ml-5">
                     <span className="fa fa-pencil fa-lg"></span> Add Dish
-                </Button>
+                </Button> */}
                 <Modal isOpen={this.state.isModalOpen} toggle={this.toggleModal}>
                     <ModalHeader toggle={this.toggleModal}>Submit Comment</ModalHeader>
                     <ModalBody>
@@ -186,7 +186,7 @@ const Menu = (props) => {
                     </Breadcrumb> */}
                     <div className="col-12">
                         <div className="row menu__header">
-                            <h3>Menu</h3>
+                            <h3 className="menu__header-title">Menu</h3>
                             <DishForm postDish={props.postDish} />
                         </div>
                         <hr />
