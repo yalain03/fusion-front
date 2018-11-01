@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Nav, Navbar, NavbarBrand, NavbarToggler, Collapse, NavItem, Jumbotron,
     Button, Modal, ModalHeader, ModalBody,
-    Form, FormGroup, Input, Label } from 'reactstrap';
+    Form, FormGroup, Input, Label, Col } from 'reactstrap';
 import { NavLink } from 'react-router-dom';
 
 class Header extends Component {
@@ -54,32 +54,35 @@ class Header extends Component {
 
     handleSignup(event) {
         this.toggleSignup();
-        this.props.signup({firstname: this.firstname.value, lastname: this.lastname.value, 
-            username: this.username.value, password: this.password.value});
+        if (this.password.value === this.confirm.value)
+            this.props.signup({firstname: this.firstname.value, lastname: this.lastname.value, 
+                username: this.username.value, password: this.password.value});
+        else
+            alert('The passwords don\'t match');
         event.preventDefault();
     }
 
   render() {
     return(
         <div>
-                <Navbar  expand="md"  className="white">
+                <Navbar  expand="md"  className="header">
                     <div className="container">
                         <NavbarToggler onClick={this.toggleNav} />
                         <NavbarBrand className="mr-auto" href="/"><img src='assets/images/logo.png' height="30" width="41" alt='Ristorante Con Fusion' /></NavbarBrand>
                         <Collapse isOpen={this.state.isNavOpen} navbar>
                             <Nav navbar>
                             <NavItem>
-                                <NavLink className="nav-link"  to='/home'><span className="lnr lnr-home"></span> Home</NavLink>
+                                <NavLink className="nav-link"  to='/home'>{/*<span className="lnr lnr-home"></span> */} Home</NavLink>
                             </NavItem>
-                            <NavItem>
+                            {/* <NavItem>
                                 <NavLink className="nav-link" to='/aboutus'><span className="lnr lnr-license"></span> About Us</NavLink>
-                            </NavItem>
+                            </NavItem> */}
                             <NavItem>
-                                <NavLink className="nav-link"  to='/menu'><span className="lnr lnr-list"></span> Menu</NavLink>
+                                <NavLink className="nav-link"  to='/menu'>{/*<span className="lnr lnr-list"></span> */} Menu</NavLink>
                             </NavItem>
-                            <NavItem>
+                            {/* <NavItem>
                                 <NavLink className="nav-link" to='/contactus'><span className="lnr lnr-phone-handset"></span> Contact Us</NavLink>
-                            </NavItem>
+                            </NavItem> */}
                             </Nav>
                         </Collapse>
 
@@ -94,14 +97,14 @@ class Header extends Component {
                                                     : null
                                                 }
                                             </Button>
-                                            <Button outline onClick={this.toggleSignup}>
+                                            <Button outline onClick={this.toggleSignup} className="btn-right">
                                                 <span className="lnr lnr-pencil"></span> Sign Up
                                             </Button>
                                         </div>
                                         :
                                         <div>
                                         <div className="navbar-text mr-3">{this.props.auth.user.username}</div>
-                                        <Button outline onClick={this.handleLogout}>
+                                        <Button outline onClick={this.handleLogout} >
                                             <span className="lnr lnr-exit"></span> Logout
                                             {this.props.auth.isFetching ?
                                                 <span className="fa fa-spinner fa-pulse fa-fw"></span>
@@ -114,8 +117,7 @@ class Header extends Component {
                                 </NavItem>
                             </Nav>
                     </div>
-                </Navbar>
-                
+                </Navbar>                
 
                 <Modal isOpen={this.state.isModalOpen} toggle={this.toggleModal}>
                     <ModalHeader toggle={this.toggleModal}>Login</ModalHeader>

@@ -1,0 +1,38 @@
+.footer {
+    background-color: #4c7d69;
+    -webkit-clip-path: polygon(0% 100%, 0% 0%, 100% 20%, 100% 100%);
+    clip-path: polygon(0% 100%, 0% 0%, 100% 20%, 100% 100%);
+
+    & p {
+        margin-top: 5px;
+        color: floralwhite;
+        font-size: 1rem;
+    }
+}
+
+li {
+    margin-top: 5px;
+
+    & > a {
+        color: floralwhite;
+    }
+
+    & > a:hover {
+        color: whitesmoke;
+        text-decoration: none;
+    }
+}
+
+.email {
+    color: floralwhite;
+    font-size: 1rem;
+
+    &:hover {
+        text-decoration: none;
+        color: whitesmoke;
+    }
+}
+
+.mailing {
+    text-align: center;
+}

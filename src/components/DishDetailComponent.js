@@ -101,7 +101,7 @@ class CommentForm extends Component {
         return (
             <div>
                 <Button outline onClick={this.toggleModal}>
-                    <span class="lnr lnr-pencil"></span> Submit Comment
+                    <span className="lnr lnr-pencil"></span> Submit Comment
                 </Button>
                 <Modal isOpen={this.state.isModalOpen} toggle={this.toggleModal}>
                     <ModalHeader toggle={this.toggleModal}>Submit Comment</ModalHeader>
@@ -168,10 +168,10 @@ class UpdateForm extends Component {
         return (
             <div>
                 <Button outline onClick={this.toggleModal}>
-                    <span class="lnr lnr-pencil"></span> Edit
+                    <span className="lnr lnr-pencil"></span> Edit
                 </Button>
                 <Button outline onClick={this.handleDelete}>
-                    <span class="lnr lnr-trash"></span> Delete
+                    <span className="lnr lnr-trash"></span> Delete
                 </Button>
                 <Modal isOpen={this.state.isModalOpen} toggle={this.toggleModal}>
                     <ModalHeader toggle={this.toggleModal}>Edit</ModalHeader>

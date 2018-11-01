@@ -39,35 +39,75 @@
 
 .home {
 
-    &__welcome {
-        // background-image: url('./images/appetizer.jpg');
-        background-size: cover;
-        background-repeat: no-repeat;
-        height: 500px;
-        position: relative;   
+  & h1 {
+    color: #4c7d69;
+  }
+
+  & h3 {
+    color: #9b9275;
+  }
+
+  &__welcome {
+    background-image: url('./images/background.jpg');
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    height: 500px;
+    position: relative;   
+
+    &-msg {   
+      position: absolute;        
+      top: 50%;
+      left: 50%;  
+      transform: translateX(-50%) translateY(-50%);
+
+      & > * {
+        font-family: Herr Von Muellerhoff, sans-serif;
+        color: gold;
+        font-size: 4rem;
+      }
+
+      &:first-child {
+        font-size: 5rem;
+        text-align: center;
+      }
         
-
-        &-msg {   
-            position: absolute;        
-            top: 50%;
-            left: 50%;  
-            transform: translateX(-50%) translateY(-50%);
-
-            & > * {
-                font-family: Herr Von Muellerhoff, sans-serif;
-                color: gold;
-                font-size: 4rem;
-            }
-
-            &:first-child {
-                font-size: 5rem;
-                text-align: center;
-            }
-        
-            &:last-child {
-                font-size: 4rem;
-                text-align: center;
-            }
-        }
+      &:last-child {
+        font-size: 4rem;
+        text-align: center;
+      }
     }
+  }
+
+  & .content {
+    width: 900px;
+    position: relative;
+
+    &__presentation > .paragraph {
+      position: absolute;
+      top: 13%;
+      left: 50%;
+    }
+
+    &__presentation > .digraph {
+      position: absolute;
+      top: 61%;
+      left: 50%;
+    }
+
+    & * {
+      font-family: Cabin, sans-serif;
+    }
+  }
+
+  &__bottom > p {
+    text-align: center;
+    font-size: 2rem;
+    color: #9b9275;
+  }
+}
+
+.paragraph-2, .paragraph-4 {
+  margin-top: 50px;
 }

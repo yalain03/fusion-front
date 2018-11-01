@@ -12,14 +12,27 @@ const maxLength = (len) => (val) => !val || (val.length <= len);
 
 function RenderMenuItem ({dish, onClick}) {
     return (
-        <Card>
-            <Link to={`/menu/${dish._id}`} >
-                <CardImg width="100%" src={baseUrl + dish.image} alt={dish.name} />
-                <CardImgOverlay>
-                    <CardTitle>{dish.name}</CardTitle>
-                </CardImgOverlay>
+        // <Card>
+        //     <Link to={`/menu/${dish._id}`} >
+        //         <CardImg width="100%" src={baseUrl + dish.image} alt={dish.name} />
+        //         <CardImgOverlay>
+        //             <CardTitle>{dish.name}</CardTitle>
+        //         </CardImgOverlay>
+        //     </Link>
+        // </Card>
+
+        <div className="menu__item mt-4">
+            <Link to={`/menu/${dish._id}`}>
+                <div className="row">
+                    <div className="col-md-3">
+                        <img src={baseUrl + dish.image} alt={dish.name} className="menu__item-img" />
+                    </div>
+                    <div className="col-md-6 menu__item-name mt-4">
+                        <h2>{dish.name}</h2>
+                    </div>
+                </div>                
             </Link>
-        </Card>
+        </div>
     );
 }
 
@@ -49,7 +62,7 @@ class DishForm extends Component {
     render() {
         return (
             <div>
-                <Button outline onClick={this.toggleModal}>
+                <Button outline onClick={this.toggleModal} className="ml-5">
                     <span className="fa fa-pencil fa-lg"></span> Add Dish
                 </Button>
                 <Modal isOpen={this.state.isModalOpen} toggle={this.toggleModal}>
@@ -165,20 +178,29 @@ const Menu = (props) => {
     }
     else
         return(
-            <div className="container">
+            <div className="container menu">
                 <div className="row">
-                    <Breadcrumb>
+                    {/* <Breadcrumb>
                         <BreadcrumbItem><Link to="/home">Home</Link></BreadcrumbItem>
                         <BreadcrumbItem active>Menu</BreadcrumbItem>
-                    </Breadcrumb>
+                    </Breadcrumb> */}
                     <div className="col-12">
-                        <h3>Menu</h3>
+                        <div className="row menu__header">
+                            <h3>Menu</h3>
+                            <DishForm postDish={props.postDish} />
+                        </div>
                         <hr />
                     </div>
                 </div>
-                <div className="row">
+                <div className="row menu__content">
                     {menu}
-                    <DishForm postDish={props.postDish} />
+                </div>
+                <div className="home__bottom mt-5">
+                    <p>
+                        Di Carpaccio Ristorante<br/>
+                        Select between the best of<br/>
+                        Italian cuisine
+                    </p>
                 </div>
             </div>
         );

@@ -31,9 +31,18 @@ address {
 .white {
   background-color: #fff; }
 
+.home h1 {
+  color: #4c7d69; }
+
+.home h3 {
+  color: #9b9275; }
+
 .home__welcome {
+  background-image: url("./images/background.jpg");
+  background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
+  background-attachment: fixed;
   height: 500px;
   position: relative; }
   .home__welcome-msg {
@@ -51,3 +60,91 @@ address {
     .home__welcome-msg:last-child {
       font-size: 4rem;
       text-align: center; }
+
+.home .content {
+  width: 900px;
+  position: relative; }
+  .home .content__presentation > .paragraph {
+    position: absolute;
+    top: 13%;
+    left: 50%; }
+  .home .content__presentation > .digraph {
+    position: absolute;
+    top: 61%;
+    left: 50%; }
+  .home .content * {
+    font-family: Cabin, sans-serif; }
+
+.home__bottom > p {
+  text-align: center;
+  font-size: 2rem;
+  color: #9b9275; }
+
+.paragraph-2, .paragraph-4 {
+  margin-top: 50px; }
+
+.footer {
+  background-color: #4c7d69;
+  -webkit-clip-path: polygon(0% 100%, 0% 0%, 100% 20%, 100% 100%);
+  clip-path: polygon(0% 100%, 0% 0%, 100% 20%, 100% 100%); }
+  .footer p {
+    margin-top: 5px;
+    color: floralwhite;
+    font-size: 1rem; }
+
+li {
+  margin-top: 5px; }
+  li > a {
+    color: floralwhite; }
+  li > a:hover {
+    color: whitesmoke;
+    text-decoration: none; }
+
+.email {
+  color: floralwhite;
+  font-size: 1rem; }
+  .email:hover {
+    text-decoration: none;
+    color: whitesmoke; }
+
+.mailing {
+  text-align: center; }
+
+.header {
+  background-color: white;
+  height: 100px; }
+  .header > * {
+    font-family: Cabin, sans-serif; }
+  .header a {
+    color: #4c7d69; }
+    .header a:hover {
+      color: #253e34; }
+
+.btn-outline-secondary {
+  border: thin solid #4c7d69;
+  color: #4c7d69; }
+  .btn-outline-secondary:hover {
+    background-color: white;
+    color: #4c7d69; }
+
+.btn-right {
+  margin-left: 10px; }
+
+.menu__item {
+  background-image: linear-gradient(to bottom right, #0276aa, #6d1b7b);
+  border-radius: 3px;
+  height: 89px; }
+  .menu__item:hover {
+    transform: scale(1.05);
+    transition: all 0.3s; }
+  .menu__item > a:hover {
+    text-decoration: none; }
+  .menu__item-name {
+    color: white; }
+    .menu__item-name:hover {
+      text-decoration: none; }
+  .menu__item-img {
+    width: 100%;
+    height: 100%;
+    -webkit-clip-path: polygon(0% 100%, 0% 0%, 100% 100%, 100% 90%);
+    clip-path: polygon(0% 100%, 0% 0%, 100% 0%, 90% 100%); }
