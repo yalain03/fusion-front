@@ -116,8 +116,8 @@ class CommentForm extends Component {
                 <Button outline onClick={this.toggleModal}>
                     <span className="lnr lnr-pencil"></span> Submit Comment
                 </Button>
-                <Modal isOpen={this.state.isModalOpen} toggle={this.toggleModal}>
-                    <ModalHeader toggle={this.toggleModal}>Submit Comment</ModalHeader>
+                <Modal isOpen={this.state.isModalOpen} toggle={this.toggleModal} className="comment">
+                    <ModalHeader toggle={this.toggleModal} className="comment__header">Submit Comment</ModalHeader>
                     <ModalBody>
                         <LocalForm onSubmit={this.handleSubmit}>
                             <FormGroup className="form-group">
@@ -138,9 +138,11 @@ class CommentForm extends Component {
                                     className="form-control" />
                             </FormGroup>
                             <FormGroup className="form-group">
+                            <center>
                                 <Button type="submit" color="primary">
                                     Submit
                                 </Button>
+                            </center>
                             </FormGroup>
                         </LocalForm>
                     </ModalBody>

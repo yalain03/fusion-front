@@ -68,7 +68,7 @@ class Header extends Component {
                 <Navbar  expand="md"  className="header">
                     <div className="container">
                         <NavbarToggler onClick={this.toggleNav} />
-                        <NavbarBrand className="mr-auto" href="/"><img src='assets/images/logo.png' height="30" width="41" alt='Di Carpaccio Ristorante' /></NavbarBrand>
+                        <NavbarBrand className="mr-auto" href="/"><img src='assets/images/logo.jpg' height="30" width="41" alt='Di Carpaccio Ristorante' /></NavbarBrand>
                         <Collapse isOpen={this.state.isNavOpen} navbar>
                             <Nav navbar>
                             <NavItem>
@@ -119,18 +119,18 @@ class Header extends Component {
                     </div>
                 </Navbar>                
 
-                <Modal isOpen={this.state.isModalOpen} toggle={this.toggleModal}>
-                    <ModalHeader toggle={this.toggleModal}>Login</ModalHeader>
+                <Modal isOpen={this.state.isModalOpen} toggle={this.toggleModal} className="login">
+                    <ModalHeader toggle={this.toggleModal} className="login__header">Sign in</ModalHeader>
                     <ModalBody>
                         <Form onSubmit={this.handleLogin}>
                             <FormGroup>
                                 <Label htmlFor="username">Username</Label>
-                                <Input type="text" id="username" name="username"
+                                <Input type="text" id="username" name="username" className="login__username"
                                     innerRef={(input) => this.username = input} />
                             </FormGroup>
                             <FormGroup>
                                 <Label htmlFor="password">Password</Label>
-                                <Input type="password" id="password" name="password"
+                                <Input type="password" id="password" name="password" className="login__password"
                                     innerRef={(input) => this.password = input}  />
                             </FormGroup>
                             <FormGroup check>
@@ -140,15 +140,17 @@ class Header extends Component {
                                     Remember me
                                 </Label>
                             </FormGroup>
-                            <Button type="submit" value="submit" color="primary">Login</Button>
+                            <center>
+                                <Button type="submit" value="submit" color="primary">Login</Button>
+                            </center>
                         </Form>
                     </ModalBody>
                 </Modal>
 
                 {/* This is for registration */}
 
-                <Modal isOpen={this.state.isSignupOpen} toggle={this.toggleSignup}>
-                    <ModalHeader toggle={this.toggleSignup}>Sign up</ModalHeader>
+                <Modal isOpen={this.state.isSignupOpen} toggle={this.toggleSignup} className="register">
+                    <ModalHeader toggle={this.toggleSignup} className="register__header">Sign up</ModalHeader>
                     <ModalBody>
                         <Form onSubmit={this.handleSignup}>
                             <FormGroup>
@@ -176,7 +178,9 @@ class Header extends Component {
                                 <Input type="password" id="confirm" name="confirm"
                                     innerRef={(input) => this.confirm = input}  />
                             </FormGroup>
-                            <Button type="submit" value="submit" color="primary">Sign up</Button>
+                            <center>
+                                <Button type="submit" value="submit" color="primary">Register</Button>
+                            </center>
                         </Form>
                     </ModalBody>
                 </Modal>

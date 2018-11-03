@@ -1,32 +1,83 @@
 .header {
     background-color: white;
     height: 100px;
+    border-bottom: 2px solid #1769aa;
 
     & > * {
         font-family: Cabin, sans-serif;
     }
 
     & a {
-        color: #4c7d69;
+        color: #1769aa;
     
         &:hover {
-            color: darken(#4c7d69, 20%);
+            color: darken(#1769aa, 20%);
         }
     }
 }
 
 .btn-outline-secondary {
-    border: thin solid #4c7d69;
-    color: #4c7d69;
+    border: thin solid 1769aa;
+    color: 1769aa;
 
     &:hover {
         // box-shadow: 1px 1px 1px 1px #4c7d69;
         background-color: white;
-        color: #4c7d69;
+        color: #1769aa;
     }
 }
 
 .btn-right {
     margin-left: 10px;
 }
+
+.login, 
+.register,
+.comment {
+
+    & * {
+        font-family: Cabin, sans-serif;
+    }
+
+    &__header {
+        background-color: #1769aa;
+        color: white;
+        height: 5rem;
+        vertical-align: middle;
+
+        & > .close {
+            height: 50px;
+            width: 50px;
+
+            & > span {
+                font-family: Nunito;
+                font-weight: 200;
+                font-size: 2.3rem;
+                color: white;
+                text-transform: uppercase;
+            }
+        }
+    }
+    
+    & input, & textarea, & select {
+        border-radius: 0;
+    }
+
+    & button {
+        border-radius: 0;
+        margin-left: auto;
+        background-color: #1769aa;
+        border: none;
+    }
+}
+
+.modal-content {
+    border-radius: 0;
+}
+
+.modal-header {
+    border-radius: 0;
+}
+
+
 
