@@ -56,12 +56,43 @@
     font-size: 0.7rem;
     border: none;
     color: #1769aa;
+    background-color: transparent;
+    border: none;
+
+    &:hover {
+        background-color: transparent;
+        color: #1769aa;         
+    }
+
+    // &__header {
+    //     background-image: linear-gradient(to right,#480048, #C04848);
+    // }
 }
+
+// .save {
+//     border-radius: 25px;
+// }
 
 .delete {
     font-size: 0.7rem;
     border: none;
     color: #1769aa;
+    background-color: transparent;
+    border: none;
+
+    &:hover {
+        background-color: transparent;
+        color: #1769aa;         
+    }
+}
+
+.submit {
+    background-color: #480048;
+    color: #fff;
+
+    &:hover {
+        background-color: lighten(#480048, 10%);
+    }
 }
 
 .lnr-star {

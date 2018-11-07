@@ -37,17 +37,36 @@
 
 .login, 
 .register,
-.comment {
+.comment,
+.edit-form {
 
     & * {
         font-family: Cabin, sans-serif;
     }
 
+    
+    
+    & input, & textarea, & select {
+        border-radius: 3px;
+    }
+
+    &:last-child button {
+        border-radius: 25px;
+        margin-left: auto;
+        // background-color: #1769aa;
+        border: none;
+    }
+
     &__header {
-        background-color: #1769aa;
+        background-image: linear-gradient(to right,#480048, #C04848);
+        // background-color: #1769aa;
         color: white;
         height: 5rem;
         vertical-align: middle;
+
+        & > button > span {
+            border-radius: 0;
+        }
 
         & > .close {
             height: 50px;
@@ -61,17 +80,6 @@
                 text-transform: uppercase;
             }
         }
-    }
-    
-    & input, & textarea, & select {
-        border-radius: 0;
-    }
-
-    & button {
-        border-radius: 0;
-        margin-left: auto;
-        background-color: #1769aa;
-        border: none;
     }
 }
 

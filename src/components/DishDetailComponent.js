@@ -113,7 +113,7 @@ class CommentForm extends Component {
     render() {
         return (
             <div>
-                <Button outline onClick={this.toggleModal}>
+                <Button outline onClick={this.toggleModal} className="submit">
                     <span className="lnr lnr-pencil"></span> Submit Comment
                 </Button>
                 <Modal isOpen={this.state.isModalOpen} toggle={this.toggleModal} className="comment">
@@ -188,8 +188,8 @@ class UpdateForm extends Component {
                 <Button outline onClick={this.handleDelete} className="delete">
                     <span className="lnr lnr-trash"></span> Delete
                 </Button>
-                <Modal isOpen={this.state.isModalOpen} toggle={this.toggleModal}>
-                    <ModalHeader toggle={this.toggleModal}>Edit</ModalHeader>
+                <Modal isOpen={this.state.isModalOpen} toggle={this.toggleModal} className="edit-form">
+                    <ModalHeader toggle={this.toggleModal} className="edit-form__header">Edit</ModalHeader>
                     <ModalBody>
                         <LocalForm onSubmit={this.handleSubmit}>
                             <FormGroup className="form-group">
@@ -210,9 +210,11 @@ class UpdateForm extends Component {
                                     className="form-control" />
                             </FormGroup>
                             <FormGroup className="form-group">
-                                <Button type="submit" color="primary">
+                                <center>
+                                <Button type="submit" className="save" color="primary">
                                     Save
                                 </Button>
+                                </center>
                             </FormGroup>
                         </LocalForm>
                     </ModalBody>

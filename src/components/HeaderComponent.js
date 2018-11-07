@@ -68,7 +68,7 @@ class Header extends Component {
                 <Navbar  expand="md"  className="header">
                     <div className="container">
                         <NavbarToggler onClick={this.toggleNav} />
-                        <NavbarBrand className="mr-auto" href="/"><img src='assets/images/logo.png' height="62" width="62" alt='Di Carpaccio Ristorante' /></NavbarBrand>
+                        <NavbarBrand className="mr-auto" href="/"><img src='assets/images/logo_transparent.png' height="62" width="62" alt='Di Carpaccio Ristorante' /></NavbarBrand>
                         <Collapse isOpen={this.state.isNavOpen} navbar>
                             <Nav navbar>
                             <NavItem>
@@ -120,7 +120,7 @@ class Header extends Component {
                 </Navbar>                
 
                 <Modal isOpen={this.state.isModalOpen} toggle={this.toggleModal} className="login">
-                    <ModalHeader toggle={this.toggleModal} className="login__header">Sign in</ModalHeader>
+                    <ModalHeader toggle={this.toggleModal} className="login__header"><img src='assets/images/logo_transparent.png' height="32" width="32" alt='Di Carpaccio Ristorante' /> Sign in</ModalHeader>
                     <ModalBody>
                         <Form onSubmit={this.handleLogin}>
                             <FormGroup>
@@ -150,7 +150,7 @@ class Header extends Component {
                 {/* This is for registration */}
 
                 <Modal isOpen={this.state.isSignupOpen} toggle={this.toggleSignup} className="register">
-                    <ModalHeader toggle={this.toggleSignup} className="register__header">Sign up</ModalHeader>
+                    <ModalHeader toggle={this.toggleSignup} className="register__header"><img src='assets/images/logo_transparent.png' height="32" width="32" alt='Di Carpaccio Ristorante' /> Sign up</ModalHeader>
                     <ModalBody>
                         <Form onSubmit={this.handleSignup}>
                             <FormGroup>

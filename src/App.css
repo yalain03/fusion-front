@@ -169,29 +169,9 @@ li {
 
 .login *,
 .register *,
-.comment * {
+.comment *,
+.edit-form * {
   font-family: Cabin, sans-serif; }
-
-.login__header,
-.register__header,
-.comment__header {
-  background-color: #1769aa;
-  color: white;
-  height: 5rem;
-  vertical-align: middle; }
-  .login__header > .close,
-  .register__header > .close,
-  .comment__header > .close {
-    height: 50px;
-    width: 50px; }
-    .login__header > .close > span,
-    .register__header > .close > span,
-    .comment__header > .close > span {
-      font-family: Nunito;
-      font-weight: 200;
-      font-size: 2.3rem;
-      color: white;
-      text-transform: uppercase; }
 
 .login input, .login textarea, .login select,
 .register input,
@@ -199,16 +179,48 @@ li {
 .register select,
 .comment input,
 .comment textarea,
-.comment select {
-  border-radius: 0; }
+.comment select,
+.edit-form input,
+.edit-form textarea,
+.edit-form select {
+  border-radius: 3px; }
 
-.login button,
-.register button,
-.comment button {
-  border-radius: 0;
+.login:last-child button,
+.register:last-child button,
+.comment:last-child button,
+.edit-form:last-child button {
+  border-radius: 25px;
   margin-left: auto;
-  background-color: #1769aa;
   border: none; }
+
+.login__header,
+.register__header,
+.comment__header,
+.edit-form__header {
+  background-image: linear-gradient(to right, #480048, #C04848);
+  color: white;
+  height: 5rem;
+  vertical-align: middle; }
+  .login__header > button > span,
+  .register__header > button > span,
+  .comment__header > button > span,
+  .edit-form__header > button > span {
+    border-radius: 0; }
+  .login__header > .close,
+  .register__header > .close,
+  .comment__header > .close,
+  .edit-form__header > .close {
+    height: 50px;
+    width: 50px; }
+    .login__header > .close > span,
+    .register__header > .close > span,
+    .comment__header > .close > span,
+    .edit-form__header > .close > span {
+      font-family: Nunito;
+      font-weight: 200;
+      font-size: 2.3rem;
+      color: white;
+      text-transform: uppercase; }
 
 .modal-content {
   border-radius: 0; }
@@ -219,7 +231,8 @@ li {
 .menu__item {
   background-image: linear-gradient(to bottom right, #0276aa, #6d1b7b);
   border-radius: 3px;
-  height: 89px; }
+  height: 89px;
+  transition: all 0.3s; }
   .menu__item:hover {
     transform: scale(1.05);
     transition: all 0.3s; }
@@ -232,7 +245,7 @@ li {
     .menu__item-name > h2 {
       font-family: Source Sans Pro, sans-serif; }
   .menu__item-img {
-    width: 110px;
+    max-width: 110px;
     height: 89px;
     -webkit-clip-path: polygon(0% 100%, 0% 0%, 100% 100%, 100% 90%);
     clip-path: polygon(0% 100%, 0% 0%, 100% 0%, 90% 100%); }
@@ -271,12 +284,28 @@ li {
 .edit {
   font-size: 0.7rem;
   border: none;
-  color: #1769aa; }
+  color: #1769aa;
+  background-color: transparent;
+  border: none; }
+  .edit:hover {
+    background-color: transparent;
+    color: #1769aa; }
 
 .delete {
   font-size: 0.7rem;
   border: none;
-  color: #1769aa; }
+  color: #1769aa;
+  background-color: transparent;
+  border: none; }
+  .delete:hover {
+    background-color: transparent;
+    color: #1769aa; }
+
+.submit {
+  background-color: #480048;
+  color: #fff; }
+  .submit:hover {
+    background-color: #7b007b; }
 
 .lnr-star {
   color: darkgoldenrod; }
