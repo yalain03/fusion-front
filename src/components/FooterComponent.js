@@ -12,22 +12,22 @@ function Footer(props) {
                             <li>Follow us</li>
                             <li>
                                 <a href="https://www.facebook.com/">
-                                <i class="fab fa-facebook-f"></i>
+                                <i className="fab fa-facebook-f"></i>
                                 </a>
                             </li>
                             <li>
                                 <a href="https://www.youtube.com/">
-                                <i class="fab fa-youtube"></i>
+                                <i className="fab fa-youtube"></i>
                                 </a>
                             </li>
                             <li>
                                 <a href="https://www.instagram.com/">
-                                <i class="fab fa-instagram"></i>
+                                <i className="fab fa-instagram"></i>
                                 </a>
                             </li>
                             <li>
                                 <a href="https://www.twitter.com/">
-                                <i class="fab fa-twitter"></i>
+                                <i className="fab fa-twitter"></i>
                                 </a>
                             </li>
                         </ul>
@@ -57,7 +57,7 @@ function Footer(props) {
                     <ul className="contacts">
                         <li>
                             <a href="mailto:contactdmin@dicarpaccio.com">
-                            <i class="fas fa-envelope"></i> contact@dicarpaccio.com</a>
+                            <i className="fas fa-envelope"></i> contact@dicarpaccio.com</a>
                         </li>
                     </ul>
                 </div>

@@ -102,8 +102,6 @@ export const putComment = (commentId, rating, comment) => (dispatch) => {
         rating: rating,
         comment: comment
     }
-    console.log('Comment ', newComment);
-    console.log(commentId);
 
     const bearer = 'Bearer ' + localStorage.getItem('token');
 
@@ -142,7 +140,6 @@ export const deleteComment = (commentId) => ({
 });
 
 export const removeComment = (commentId) => (dispatch) => {
-    console.log(commentId);
 
     const bearer = 'Bearer ' + localStorage.getItem('token');
 
@@ -228,7 +225,7 @@ export const fetchComments = () => (dispatch) => {
             throw errmess;
         })
         .then(response => response.json())
-        .then(comments => { console.log(comments); dispatch(addComments(comments)) })
+        .then(comments => dispatch(addComments(comments)))
         .catch(error => dispatch(commentsFailed(error.message)));
 }
 

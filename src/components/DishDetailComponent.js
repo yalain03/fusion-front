@@ -75,7 +75,7 @@ function RenderComments({comments, postComment, dishId, putComment, removeCommen
                             return (
                                 <li key={comment._id} className="detail__comments-item">
                                     <div>
-                                        <p><span class="lnr lnr-star"></span> {comment.rating}</p>
+                                        <p><span className="lnr lnr-star"></span> {comment.rating}</p>
                                         <p>{comment.comment}</p>
                                         <p>{comment.author.username}, {new Intl.DateTimeFormat('en-US', { year: 'numeric', month: 'short', day:'2-digit'}).format(new Date(Date.parse(comment.updatedAt)))}</p>
                                     </div>
