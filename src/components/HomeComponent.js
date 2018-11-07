@@ -34,7 +34,7 @@ const Home = (props) => {
             <div className="home__welcome">
                 <div className="home__welcome-msg">
                     <p>Di Carpaccio Ristorante</p>
-                    <p>1524 E Brokers Ave.</p>
+                    <p>1524 E. Brokers Ave.</p>
                 </div>
             </div>
         {/* </Jumbotron> */}

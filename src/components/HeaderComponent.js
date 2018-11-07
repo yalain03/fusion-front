@@ -68,7 +68,7 @@ class Header extends Component {
                 <Navbar  expand="md"  className="header">
                     <div className="container">
                         <NavbarToggler onClick={this.toggleNav} />
-                        <NavbarBrand className="mr-auto" href="/"><img src='assets/images/logo.jpg' height="30" width="41" alt='Di Carpaccio Ristorante' /></NavbarBrand>
+                        <NavbarBrand className="mr-auto" href="/"><img src='assets/images/logo.png' height="62" width="62" alt='Di Carpaccio Ristorante' /></NavbarBrand>
                         <Collapse isOpen={this.state.isNavOpen} navbar>
                             <Nav navbar>
                             <NavItem>

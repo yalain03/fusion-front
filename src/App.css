@@ -38,7 +38,7 @@ address {
   color: #9b9275; }
 
 .home__welcome {
-  background-image: url("./images/background.jpg");
+  background: linear-gradient(rgba(102, 45, 145, 0.8), rgba(102, 45, 145, 0.8)), url("./images/background.jpg");
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
@@ -84,13 +84,20 @@ address {
   margin-top: 50px; }
 
 .footer {
-  background-color: #1769aa;
-  -webkit-clip-path: polygon(0% 100%, 0% 0%, 100% 20%, 100% 100%);
-  clip-path: polygon(0% 100%, 0% 0%, 100% 20%, 100% 100%); }
+  background-color: #121921; }
   .footer p {
     margin-top: 5px;
     color: floralwhite;
     font-size: 1rem; }
+  .footer > .container {
+    margin-bottom: 50px;
+    margin-top: 10px; }
+  .footer > .container > hr {
+    background-color: #fff;
+    opacity: 0.7; }
+
+h5 {
+  color: #fff; }
 
 li {
   margin-top: 5px; }
@@ -99,6 +106,31 @@ li {
   li > a:hover {
     color: whitesmoke;
     text-decoration: none; }
+
+.follow_us i {
+  opacity: 0.7; }
+
+.follow_us:first-child {
+  color: #fff;
+  padding-left: 0; }
+
+.follow_us ul li {
+  display: inline-block;
+  margin-right: 30px;
+  font-size: 20px;
+  font-size: 1.25rem; }
+  .follow_us ul li > a > i:hover {
+    opacity: 1; }
+
+.links, .contacts {
+  padding-left: 0; }
+  .links > li, .contacts > li {
+    list-style: none; }
+    .links > li > a, .contacts > li > a {
+      color: #fff;
+      opacity: 0.7; }
+      .links > li > a:hover, .contacts > li > a:hover {
+        opacity: 1; }
 
 .email {
   color: floralwhite;
@@ -110,23 +142,27 @@ li {
 .mailing {
   text-align: center; }
 
+#copy {
+  color: #fff;
+  opacity: 0.7; }
+
 .header {
-  background-color: white;
-  height: 100px;
-  border-bottom: 2px solid #1769aa; }
+  background-image: linear-gradient(to right, #480048, #C04848);
+  height: 80px; }
   .header > * {
     font-family: Cabin, sans-serif; }
   .header a {
-    color: #1769aa; }
-    .header a:hover {
-      color: #0b3250; }
+    color: #fff; }
 
 .btn-outline-secondary {
   border: thin solid 1769aa;
-  color: 1769aa; }
+  color: #333;
+  background-color: #FFC107;
+  border: none;
+  border-radius: 25px; }
   .btn-outline-secondary:hover {
-    background-color: white;
-    color: #1769aa; }
+    background-color: #3f9fff;
+    color: #fff; }
 
 .btn-right {
   margin-left: 10px; }
